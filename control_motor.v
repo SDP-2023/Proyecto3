@@ -13,7 +13,7 @@ output reg A, B, C, D, INH1, INH2
 // Declaramos los estados "actual" y "siguiente" respectivamente -->
 reg [2:0] state, next_state ;
 // Declaramos los valores de los 8 estados que existen --> (3 bits) --> 2^3 = 8 -->
-parameter s1 = 3'd0, s2 = 3'd1, s3 = 3'd2, s4 = 3'd3, s5 = 3'd4, s6 = 3'd5, s7 = 3'd6, s8 = 3'd7 ;
+parameter s1 = 0, s2 = 1, s3 = 2, s4 = 3, s5 = 4, s6 = 5, s7 = 6, s8 = 7 ;
 
 always @(posedge CLK or negedge RESET) begin
     if(!RESET)
@@ -24,24 +24,19 @@ always @(posedge CLK or negedge RESET) begin
 end
 
 always @(HALF_FULL or UP_DOWN or ENABLE or state) begin
-    if(ENABLE)
-        begin
-            if(HALF_FULL)
-            begin
-                if(UP_DOWN)
-                    next_state <= state+1 ;
-                else
-                    next_state <= state-1 ;
-            end
-            else
-                begin
-                    if(UP_DOWN)
-                        next_state <= state+2 ;
-                    else
-                        next_state <= state-2 ;
-                end
-        end
-
+  if(ENABLE)
+	 if(HALF_FULL)
+		if(UP_DOWN)
+		  next_state = state+1;
+		else
+		  next_state = state-1;
+    else
+	   if(UP_DOWN)
+		  next_state = state+2;
+	   else
+		  next_state = state-2;
+  else
+	 next_state = state;
 end
 
 always @(state) begin
