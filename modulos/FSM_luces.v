@@ -26,7 +26,7 @@ always @(posedge CLK or negedge RESET)
     if(!RESET)
         state <= S01;
     else if (ENABLE)
-        state <= next_state
+        state <= next_state;
     else
         state <= state;
 
