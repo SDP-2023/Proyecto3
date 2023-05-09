@@ -8,7 +8,7 @@ module FSM_luces(
     input CLK, RSTn, ENABLE,
     
     // Declaración de Salidas -->
-    output reg [7:0] LEDG
+    output [7:0] LEDG
 );
 
 // Declaramos los registros de estado
@@ -56,16 +56,13 @@ always @(state)
 /**
  * Establecemos el valor de la salida en base al estado actual
  */
-always @(state)
-    case (state)
-        S01:      LEDG = 8'b10000000;
-        S02, S14: LEDG = 8'b01000000;
-        S03, S13: LEDG = 8'b00100000;
-        S04, S12: LEDG = 8'b00010000;
-        S05, S11: LEDG = 8'b00001000;
-        S06, S10: LEDG = 8'b00000100;
-        S07, S09: LEDG = 8'b00000010;
-        S08:      LEDG = 8'b00000001;
-    endcase
+assign LEDG[0] = state == S01;
+assign LEDG[1] = state == S02 || state == S14;
+assign LEDG[2] = state == S03 || state == S13;
+assign LEDG[3] = state == S04 || state == S12;
+assign LEDG[4] = state == S05 || state == S11;
+assign LEDG[5] = state == S06 || state == S10;
+assign LEDG[6] = state == S07 || state == S09;
+assign LEDG[7] = state == S08;
 
 endmodule
