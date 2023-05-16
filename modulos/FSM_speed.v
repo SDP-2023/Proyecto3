@@ -14,7 +14,7 @@ module FSM_speed(
 );
 
 // Declaramos los registros de estado
-reg state, next_state;
+reg [1:0] state, next_state;
 
 // Declaramos el valor de los estados
 localparam STATE_IDLE = 2'd0, STATE_INCR = 2'd1, STATE_DECR = 2'd2;
