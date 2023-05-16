@@ -1,6 +1,6 @@
 /**
  * Diseño de un juego de luces tipo coche fantástico, con velocidad variable mediante
- * dos botones.
+ * dos botones..
  */
 
 module juego_luces_vel_var(
