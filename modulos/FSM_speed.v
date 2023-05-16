@@ -23,24 +23,17 @@ localparam STATE_IDLE = 2'd0, STATE_INCR = 2'd1, STATE_DECR = 2'd2;
  * Copia next_state a state al ritmo del reloj. También reinicia al estado S01 si se pulsa
  * el botón de RESET.
  */
-always @(posedge CLK or negedge RSTn) begin
+always @(posedge CLK, negedge RSTn, negedge Key1, negedge Key2) begin
     if(!RSTn)
         state <= STATE_IDLE;
-    else if (ENABLE)
-        state <= next_state;
     else
-        state <= state;
+        state <= next_state;
 
+    // Key1 decrementa
+    // Key2 incrementa
     // Reiniciamos el estado a IDLE
-    next_state = STATE_IDLE;
+    next_state = !Key1 ? STATE_DECR : !Key2 ? STATE_INCR : STATE_IDLE;
 end
-
-
-// Key1 decrementa
-always @(posedge Key1) next_state = STATE_DECR;
-
-// Key2 incrementa
-always @(posedge Key2) next_state = STATE_INCR;
 
 
 // Enable estará habilitado siempre y cuando no estemos en IDLE
