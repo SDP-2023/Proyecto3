@@ -32,11 +32,11 @@ always @(posedge CLK or negedge RSTn) begin
         else
             COUNT <= COUNT + (UP_DOWN ? 1'd1 : -1'd1);
 
-    // TC cogerá el valor de UNO, en caso de que se halla finalizado la cuenta, y sino, cogerá valor CERO
-	assign TC = UP_DOWN == 1'b1 ?
-        (COUNT == modulo-1) ? 1'b1 : 1'b0 :
-        (COUNT == 0)        ? 1'b1 : 1'b0;
-
 end
+
+// TC cogerá el valor de UNO, en caso de que se halla finalizado la cuenta, y sino, cogerá valor CERO
+assign TC = UP_DOWN == 1'b1 ?
+    (COUNT == modulo-1) ? 1'b1 : 1'b0 :
+    (COUNT == 0)        ? 1'b1 : 1'b0;
 
 endmodule
