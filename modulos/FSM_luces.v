@@ -1,6 +1,6 @@
 /**
  * Máquina de estados finita que muestra un LED que se desplaza de lado a lado de una
- * matriz de 8 LEDs lineal al ritmo del reloj (CLK).
+ * matriz de 8 LEDs lineal al ritmo del reloj (CLK)..
  */
 
 module FSM_luces(
