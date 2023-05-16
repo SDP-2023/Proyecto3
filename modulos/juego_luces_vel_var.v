@@ -19,7 +19,7 @@ wire enable_speed, up_down_speed;
 wire [3:0] cuenta;
 
 contador #(
-    .modulo(500_000)
+    .modulo(5_000_000)
 ) counter2 (
     .CLK(CLOCK_50),
     .RSTn(KEY[0]),
