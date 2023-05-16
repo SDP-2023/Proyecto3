@@ -22,7 +22,7 @@ if (!reset)
     cuenta <= 0;
 else if (enable)
     if (cuenta == cuenta_fin)
-        cuenta = 0;
+        cuenta <= 0;
     else
         cuenta <= (cuenta + 1'b1);
 
