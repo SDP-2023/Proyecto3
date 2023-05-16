@@ -22,8 +22,8 @@ localparam  S01 = 4'd0, S02 = 4'd1, S03 = 4'd2, S04 = 4'd3, S05 = 4'd4, S06 = 4'
  * Copia next_state a state al ritmo del reloj. También reinicia al estado S01 si se pulsa
  * el botón de RESET.
  */
-always @(posedge CLK or negedge RESET)
-    if(!RESET)
+always @(posedge CLK or negedge RSTn)
+    if(!RSTn)
         state <= S01;
     else if (ENABLE)
         state <= next_state;
