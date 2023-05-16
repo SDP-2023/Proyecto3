@@ -4,7 +4,6 @@
     módulos creados anteriormente.
 **/
 
-
 // Cuanto es el paso de la simulación (siempre igual)
 `timescale 1ns/100ps 
 
