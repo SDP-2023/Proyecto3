@@ -98,3 +98,5 @@ vsim.dbg
 
 # Ignoramos los archivos generados por los testbench
 vga.txt
+
+/simulation

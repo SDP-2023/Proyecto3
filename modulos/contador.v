@@ -5,18 +5,18 @@
 
 module contador #(
     parameter modulo = 10               // modulo de la cuenta
-)(
-    // Declaración de Entradas -->
-    input CLK, RSTn, ENABLE, UP_DOWN,   // CLK, activo a nivel alto, RST asíncrono actv a lvl bajo,
-                                        // Enable a lvl alto y Señal de contador(1), restador(0)
-
-    // Declaración de Salidas -->
-    output reg [N-1:0] COUNT,           // Contador de tamaño 'N' bits
-    output TC                           // Terminal count (Activo cuando la cuenta ha llegado a su fin)
-);
+)(CLK, RSTn, ENABLE, UP_DOWN, COUNT, TC);
 
 // Calculamos el número de bits necesarios para el módulo dado
 localparam N = $clog2(modulo-1);
+
+// Declaración de Entradas -->
+input CLK, RSTn, ENABLE, UP_DOWN;   // CLK, activo a nivel alto, RST asíncrono actv a lvl bajo,
+                                    // Enable a lvl alto y Señal de contador(1), restador(0)
+
+// Declaración de Salidas -->
+output reg [N-1:0] COUNT;           // Contador de tamaño 'N' bits
+output TC;                          // Terminal count (Activo cuando la cuenta ha llegado a su fin)
 
 // Bloque procedural always con sensibilidad de reloj a nivel alto y Reset a lvl bajo
 always @(posedge CLK or negedge RSTn) begin
