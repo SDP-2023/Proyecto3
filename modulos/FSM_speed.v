@@ -28,12 +28,14 @@ localparam STATE_IDLE = 2'd0, STATE_INCR = 2'd1, STATE_DECR = 2'd2;
  * el botón de RESET.
  */
 always @(posedge CLK or negedge RSTn) begin
-    if(!RSTn)
+    if(!RSTn) begin
         state <= STATE_IDLE;
+        ENABLE <= 0;
+        UP_DOWN <= 0;
+        Key1_prev <= 1;
+        Key2_prev <= 1;
+    end
     else begin
-        Key1_prev <= Key1;
-        Key2_prev <= Key2;
-
         case (state)
         STATE_IDLE: begin
             // Key1 decrementa
@@ -48,12 +50,22 @@ always @(posedge CLK or negedge RSTn) begin
                 ENABLE <= 1;
                 UP_DOWN <= 0;
             end
-            else ENABLE <= 0;
+            else begin
+                state <= STATE_IDLE;
+                ENABLE <= 0;
+                UP_DOWN <= 0; // Realmente da igual
+            end
         end
         // Cuando se llegue al estado de incremento o decremento, reiniciamos al estado IDLE
-        STATE_INCR: state <= STATE_IDLE;
-        STATE_DECR: state <= STATE_IDLE;
+        STATE_INCR, STATE_DECR: begin
+            state <= STATE_IDLE;
+            ENABLE <= 0;
+            UP_DOWN <= 0; // Realmente da igual
+        end
         endcase
+        
+        Key1_prev <= Key1;
+        Key2_prev <= Key2;
     end
 end
 
