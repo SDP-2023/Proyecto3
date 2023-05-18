@@ -30,18 +30,50 @@ module testbench_FSM_luces_kit();
     );
 
     // Generamos el clock -->
-	always #(T/2) CLK = ~CLK ; // Cada medio periodo cambiamos clk de 1 a 0 y vicev
+	always #(T/2) CLK = ~CLK ; // Cada medio periodo cambiamos clk de 1 a 0 y viceversa
 
     // Test procedure (Lo que vamos a hacer para probarlo)
     initial begin
         // Empezamos reiniciando
-		CLK = 0;
-		RSTn = 0;
-        ENABLE = 0;
+		CLK_50 = 0 ;
+		KEY[0] = 0 ; // Reset
+        SW[0] = 0 ; // Enable
+
+        #(T*2)
         // Desconectamos el reset
-        #(T*2) RSTn = 1;
+        KEY[0] = 1 ;
         // Habilitamos enable
-        ENABLE = 1;
+        SW[0] = 1 ;
+        // Esperamos un par de ciclos
+        #(T*2) 
+
+        // Decrementamos Velocidad
+        KEY[1] = 0 ;
+        #(T*2) 
+
+        // Aumentamos Velocidad
+        KEY[1] = 1 ;
+        KEY[2] = 0 ;
+        #(T*2)
+
+        // Decrementamos dos seguidas
+        KEY[2] = 1 ;
+        KEY[1] = 0 ;
+        KEY[1] = 0 ;
+        #(T*2) 
+
+        // pULSAMOS EL SEGUNDO SWITCH
+        KEY[1] = 1 ;
+        SW[1] = 1 ;
+        #(T*2) 
+
+        // Deshabilitamos tod
+        KEY[0] = 1 ; // Reset
+        KEY[1] = 1 ; 
+        KEY[2] = 1 ; 
+        SW[0] = 0 ; // Enable
+        SW[1] = 0 ; 
+        $stop ;
     end
 
 endmodule
