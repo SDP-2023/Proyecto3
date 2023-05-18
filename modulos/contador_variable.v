@@ -1,3 +1,9 @@
+/**
+    En este módulo se ha realizado por los profesores un contador 
+    variable el cual determina la forma en que se podrá llevar la 
+    cuenta y esto se lleva a cabo en placa mediante el segundo 
+    switch que se llegará ha asignar.
+**/
 module contador_variable #(
     parameter width_counter = 4
 ) (

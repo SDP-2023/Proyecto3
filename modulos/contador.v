@@ -1,7 +1,7 @@
 
 /**
- * Creación de un contador binario síncrono de módulo parametrizable ascendente/descendente
- */ 
+    Creación de un contador binario síncrono de módulo parametrizable ascendente/descendente.
+**/ 
 
 module contador #(
     parameter modulo = 10               // modulo de la cuenta
