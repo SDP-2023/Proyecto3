@@ -1,3 +1,10 @@
+/**
+    En este módulo planteamos la realización de un  testbench sobre el módulo
+    "contador.v", módulo el cual se lleva un cuenta sobre lso pasos que llevan 
+    los leds hacia un lado u hacia otro, para qeu así tenga que cambiar en 
+    cuanto a la dirección.
+**/
+
 `timescale 1ns/100ps // Cuanto es el paso de la simulación (siempre igual)
 
 module testbench_contador();

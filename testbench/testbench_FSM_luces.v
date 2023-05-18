@@ -1,3 +1,9 @@
+/**
+    En este módulo planteamos la realización de un  testbench sobre el módulo
+    "FSM_luces.v", módulo en el cual se realiza en sí lo que sería el 
+    desplazamiento de los leds bien a derechas o bien a izquierdas.
+**/
+
 `timescale 1ns/100ps // Cuanto es el paso de la simulación (siempre igual)
 
 module testbench_FSM_luces();

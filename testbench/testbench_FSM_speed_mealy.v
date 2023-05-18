@@ -1,3 +1,11 @@
+/**
+    En este módulo planteamos la realización de un  testbench sobre el módulo
+    "FSM_speed.v", módulo final en el cual se puede controlar la velocidad en 
+    que los leds se van desplazando a medida que se pulsa un de los botones 
+    designados para ello, los cuales será el de key1 y key2 
+    (decrementar y incrementar) respectivamente.
+**/
+
 `timescale 1ns/100ps // Cuanto es el paso de la simulación (siempre igual)
 
 module testbench_FSM_speed_mealy();
